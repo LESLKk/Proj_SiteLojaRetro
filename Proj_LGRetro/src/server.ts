@@ -1,4 +1,4 @@
-//api da loja: sevidor express crud produtos aaaaassdlkjhasdflkjhasdlkfjh sdfalkj
+//API da LOJA: sevidor express com o CRUD
 
 import express from 'express';
 

@@ -1,15 +1,5 @@
 {
-  "devDependencies": {
-    "@types/express": "^5.0.6",
-    "@types/node": "^26.6.5",
-    "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
-  },
-  "dependencies": {
-    "express": "^5.3.0",
-    "firebase-admin": "^14.5.0"
-  },
-  "name": "proj_pdm",
+  "name": "proj_lgretro",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -22,5 +12,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.3.0",
+    "firebase-admin": "^14.5.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
 }
