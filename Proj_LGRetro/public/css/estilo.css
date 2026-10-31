@@ -1,0 +1,572 @@
+@charset "UTF-8";
+
+/* ==========================================================
+   Loja Simples — folha de estilos única para as três páginas
+   ========================================================== */
+
+/* ---------- Variáveis (cores e medidas usadas no site todo) ---------- */
+:root {
+    /* Cores tiradas da logo (public/assets/piurancing.png) */
+
+    /* Área clara: páginas, cartões e formulários */
+    --fundo: #f0f0f0;
+    --superficie: #ffffff;
+    --texto: #1a1a1a;
+    --texto-suave: #5c5c5c;
+    --borda: #dedede;
+    --borda-campo: #8c8c8c; /* borda dos campos de formulário */
+
+    /* Área escura: topo de todas as páginas e menu lateral do painel */
+    --escuro: #1e1e1e; /* preto do capacete */
+    --sobre-escuro: #f6f6f6; /* texto em cima do escuro (branco do "RANCING") */
+    --sobre-escuro-suave: #c4c4c4; /* prata */
+    --borda-escura: #3a3a3a;
+
+    /* Cores da marca */
+    --destaque: #2ec4b6; /* save" */
+    --destaque-escuro: #845ec2; /* laranja */
+    --destaque-claro: #ff9f1c; /* amarelo transparente */
+    --sobre-destaque: #ff4d6d; /* texto escrito em cima do amarelo */
+    --verde: #0a7a24; /* verde da faixa do capacete, escurecido para leitura */
+    --verde-claro: #e2f3e6;
+    --perigo: #b3261e;
+    --perigo-claro: #fbeae8;
+
+    --raio: 12px;
+    --sombra: 0 1px 2px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.07);
+}
+
+/* ---------- Base ---------- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+    line-height: 1.5;
+    color: var(--texto);
+    background: var(--fundo);
+}
+
+main {
+    flex: 1; /* empurra o rodapé para o fim da página */
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* O atributo "hidden" precisa vencer qualquer display definido abaixo */
+[hidden] {
+    display: none !important;
+}
+
+.texto-suave {
+    color: var(--texto-suave);
+}
+
+/* ---------- Topo ---------- */
+.topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 24px;
+    background: var(--escuro);
+    color: var(--sobre-escuro);
+    border-bottom: 3px solid var(--destaque);
+}
+
+/* Dentro do topo escuro, o texto secundário fica prata */
+.topo .texto-suave {
+    color: var(--sobre-escuro-suave);
+}
+
+.marca {
+    width: 200px;
+}
+
+.topo-usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.topo-usuario span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+/* ---------- Botões ---------- */
+.botao {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid var(--destaque);
+    border-radius: 8px;
+    background: var(--destaque);
+    color: var(--sobre-destaque);
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        background 0.15s,
+        color 0.15s;
+}
+
+.botao:hover {
+    background: var(--destaque-escuro);
+    border-color: var(--destaque-escuro);
+}
+
+.botao:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.botao-contorno {
+    border-color: var(--texto);
+    background: transparent;
+    color: var(--texto);
+}
+
+.botao-contorno:hover {
+    background: var(--destaque-claro);
+    border-color: var(--texto);
+}
+
+/* No topo escuro, o botão de contorno fica amarelo */
+.topo .botao-contorno,
+.topo .botao-contorno:hover {
+    border-color: var(--destaque);
+    color: var(--destaque);
+}
+
+.botao-perigo {
+    border-color: var(--perigo);
+    background: transparent;
+    color: var(--perigo);
+}
+
+.botao-perigo:hover {
+    background: var(--perigo-claro);
+    border-color: var(--perigo);
+}
+
+.botao-pequeno {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+}
+
+.botao-link {
+    border: none;
+    background: none;
+    padding: 4px;
+    color: var(--verde);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* ---------- Vitrine: destaque ---------- */
+.destaque {
+    padding: 56px 24px 40px;
+    text-align: center;
+}
+
+.destaque h1 {
+    max-width: 640px;
+    margin: 0 auto 8px;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.destaque p {
+    color: var(--texto-suave);
+    font-size: 1.05rem;
+}
+
+.conteudo {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 56px;
+}
+
+.aviso {
+    padding: 24px 0;
+    text-align: center;
+    color: var(--texto-suave);
+}
+
+/* ---------- Grade de produtos ---------- */
+.grade {
+    display: grid;
+    /* cria quantas colunas couberem, cada uma com no mínimo 230px */
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.produto {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--superficie);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+.produto img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover; /* corta a foto para preencher sem deformar */
+    background: var(--borda);
+}
+
+.produto-corpo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    padding: 16px;
+}
+
+.produto h3 {
+    font-size: 1.05rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.produto-descricao {
+    flex: 1;
+    font-size: 0.92rem;
+    color: var(--texto-suave);
+    overflow-wrap: anywhere;
+}
+
+.produto-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.preco {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.etiqueta {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--verde-claro);
+    color: var(--verde);
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.etiqueta-esgotado {
+    background: var(--perigo-claro);
+    color: var(--perigo);
+}
+
+/* ---------- Cartão e formulários ---------- */
+.cartao {
+    padding: 24px;
+    background: var(--superficie);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.formulario h1,
+.formulario h2 {
+    font-size: 1.3rem;
+}
+
+.formulario label {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--borda-campo);
+    border-radius: 8px;
+    background: var(--superficie);
+    color: var(--texto);
+    font: inherit;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--verde);
+    outline-offset: 2px;
+}
+
+/* Nas áreas escuras, o contorno de foco fica amarelo */
+.topo a:focus-visible,
+.topo button:focus-visible,
+.menu-lateral button:focus-visible {
+    outline-color: var(--destaque);
+}
+
+.duas-colunas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.duas-colunas label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.dica {
+    font-size: 0.82rem;
+    color: var(--texto-suave);
+}
+
+.acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+/* Mensagens de sucesso e de erro */
+.mensagem {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--verde-claro);
+    color: var(--verde);
+    font-size: 0.92rem;
+}
+
+.mensagem-erro {
+    background: var(--perigo-claro);
+    color: var(--perigo);
+}
+
+/* ---------- Login ---------- */
+.centro {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 56px 16px;
+}
+
+.cartao-login {
+    width: 100%;
+    max-width: 380px;
+}
+
+.cartao-login .botao {
+    margin-top: 14px;
+}
+
+.cartao-login .botao-link {
+    margin-top: 6px;
+    align-self: center;
+}
+
+/* ---------- Painel do administrador ---------- */
+/* Duas colunas: o menu lateral à esquerda e o conteúdo à direita */
+.painel {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+}
+
+.menu-lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 24px 12px;
+    background: var(--escuro);
+}
+
+.menu-opcao {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--sobre-escuro);
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+}
+
+.menu-opcao:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* A classe "ativo" é colocada pelo JavaScript na opção que está aberta */
+.menu-opcao.ativo {
+    background: var(--destaque-claro);
+    color: var(--destaque);
+}
+
+.painel-conteudo {
+    min-width: 0; /* permite o conteúdo encolher em telas estreitas */
+    max-width: 860px;
+    padding: 32px 32px 56px;
+}
+
+.painel-conteudo h2 {
+    font-size: 1.3rem;
+}
+
+.painel-conteudo > .mensagem {
+    margin: 0 0 20px;
+}
+
+.painel-conteudo .formulario {
+    max-width: 480px;
+}
+
+.lista-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.item-admin {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    background: var(--superficie);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+}
+
+.item-admin img {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 8px;
+    background: var(--borda);
+}
+
+.item-admin-info {
+    flex: 1;
+    min-width: 0; /* permite o texto quebrar em vez de estourar o cartão */
+}
+
+.item-admin-info strong {
+    display: block;
+    overflow-wrap: anywhere;
+}
+
+.item-admin-info span {
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+}
+
+.item-admin-acoes {
+    display: flex;
+    gap: 8px;
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+    padding: 20px 24px;
+    border-top: 1px solid var(--borda);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+}
+
+/* ---------- Telas pequenas (celular) ---------- */
+@media (max-width: 800px) {
+    /* O menu lateral vira uma barra no alto da página */
+    .painel {
+        grid-template-columns: 1fr;
+        align-content: start;
+    }
+
+    .menu-lateral {
+        flex-direction: row;
+        padding: 10px 16px;
+    }
+
+    .menu-opcao {
+        flex: 1;
+        text-align: center;
+    }
+
+    .painel-conteudo {
+        padding: 20px 16px 40px;
+    }
+
+    .topo {
+        padding: 12px 16px;
+    }
+
+    .conteudo {
+        padding: 0 16px 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .item-admin {
+        flex-wrap: wrap;
+    }
+
+    .item-admin-acoes {
+        width: 100%;
+    }
+
+    .item-admin-acoes .botao {
+        flex: 1;
+    }
+
+    .topo-usuario span {
+        display: none;
+    }
+}

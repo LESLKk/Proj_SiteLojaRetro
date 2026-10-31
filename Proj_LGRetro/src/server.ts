@@ -1,6 +1,6 @@
 //API da LOJA: sevidor express com o CRUD
 
-import express from "express";
+import express, {NextFunction, Request, Response} from "express";
 import { db } from "./firebase";
 
 const app = express();
@@ -140,7 +140,11 @@ app.delete("/api/produtos/:id", async (req, res) => {
     res.status(204).send();
 })
 
-
+//TRATAMENTO DE ERROS
+app.use((erro: Error, req: Request, res: Response, next: NextFunction) => {
+    console.error(erro.stack);
+    res.status(500).json({ erro: "Ocorreu um erro interno no servidor." });
+});
 
 
 

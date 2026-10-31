@@ -4,9 +4,43 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Save State</title>
+        <link rel="stylesheet" href="css/estilo.css" />
     </head>
     <body>
-        <h1>Save State</h1>
-        <p>Bem-vindo ao Save State!</p>
+        <header class="topo">
+            <a class="marca" href="index.html"><img src="./assets/logo.jpg" alt="Save State" /></a>
+            <a class="botao botao_contorno" href="admin.html">Área Administrativa</a>
+        </header>
+
+        <main>
+            <section class="destaque">
+                <h1>A maior loja de jogos retro do Brasil</h1>
+                <p>Encontre os melhores jogos e acessórios para revitalizar sua coleção.</p>
+            </section>
+
+            <section class="conteudo">
+                <p id="aviso" class="aviso">Carregando produtos...</p>
+
+                <div id="lista-produtos" class="grade"></div>
+            </section>
+
+            <footer class="rodape">Projeto de estudo - HTML, CSS, JS/TS, Express e firebase</footer>
+        </main>
+
+        <template id="modelo-produto">
+            <article class="produto">
+                <img class="produto-foto" alt="" />
+                <div class="produto-corpo">
+                    <h3 class="produto-nome"></h3>
+                    <p class="produto-descricao"></p>
+                    <div class="produto-rodape">
+                        <span class="preco"></span>
+                        <span class="etiqueta"></span>
+                    </div>
+                </div>
+            </article>
+        </template>
+
+    <script src="./js/index.js"></script>
     </body>
 </html>
