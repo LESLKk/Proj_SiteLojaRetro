@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Painel Pensin</title>
+        <link rel="stylesheet" href="./css/estilo.css" />
+    </head>
+    <body>
+        <header class="topo">
+            <a class="marca" href="index.html"><img src="./assets/logo.jpg" alt="Save State" /></a>
+            <a class="botao botao_contorno" href="index.html">Acessar loja</a>
+        </header>
+
+        <main id="painel" class="painel">
+            <!-- Menu Lateral -->
+            <nav class="menu-lateral">
+                <button type="button" id="menu-listar" class="menu-opcao ativo">Listar produtos</button>
+                <button type="button" id="menu-cadastrar" class="menu-opcao">Cadastrar produtos</button>
+            </nav>
+
+            <!-- Painel Conteúdo -->
+            <div class="painel-conteudo">
+                <!-- Mensagem de Retorno -->
+                <p id="mensagem" class="mensagem" hidden></p>
+
+                <!-- Tela 1: Lista de Produtos -->
+                <section id="tela-lista">
+                    <h2>Produtos cadastrados</h2>
+                    <p id="aviso" class="aviso">Carregando...</p>
+                    <ul id="lista-produtos" class="lista-admin"></ul>
+                </section>
+
+                <!-- Tela 2: Formulário de Cadastro e Edição -->
+                <section id="tela-formulario" hidden>
+                    <form id="form-produto" class="cartao formulario">
+                        <h2 id="titulo-form">Novo produto</h2>
+
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" id="nome" required maxlength="80" />
+
+                        <label for="descricao">Descrição</label>
+                        <textarea name="descricao" id="descricao" rows="3" required maxlength="300"></textarea>
+
+                        <div class="duas-colunas">
+                            <div>
+                                <label for="preco">Preço</label>
+                                <input type="number" name="preco" id="preco" min="0" step="0.01" required />
+                            </div>
+                            <div>
+                                <label for="quantidade">Quantidade</label>
+                                <input type="number" name="quantidade" id="quantidade" min="0" step="1" required />
+                            </div>
+                        </div>
+
+                        <label for="foto-url">Link da foto</label>
+                        <input type="url" name="foto-url" id="foto-url" placeholder="https://" required />
+                        <p class="dica">Cole o endereço de uma imagem da internet.</p>
+
+                        <div class="acoes">
+                            <button type="submit" id="botao-salvar" class="botao">Cadastrar produto</button>
+                            <button type="button" id="botao-cancelar" class="botao botao-contorno">Cancelar</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </main>
+
+        <!-- Template para cada item da lista -->
+        <template id="modelo-item">
+            <li class="item-admin">
+                <img class="item-foto" alt="" />
+                <div class="item-admin-info">
+                    <strong class="item-nome"></strong>
+                    <span class="item-detalhes"></span>
+                </div>
+                <div class="item-admin-acoes">
+                    <button type="button" class="botao botao-contorno botao-pequeno botao-editar">Editar</button>
+                    <button type="button" class="botao botao-perigo botao-pequeno botao-excluir">Excluir</button>
+                </div>
+            </li>
+        </template>
+
+        <script src="./js/admin.js"></script>
+    </body>
+</html>

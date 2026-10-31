@@ -11,13 +11,13 @@
     /* Área clara: páginas, cartões e formulários */
     --fundo: #f0f0f0;
     --superficie: #ffffff;
-    --texto: #1a1a1a;
+    --texto: #030303;
     --texto-suave: #5c5c5c;
     --borda: #dedede;
     --borda-campo: #8c8c8c; /* borda dos campos de formulário */
 
     /* Área escura: topo de todas as páginas e menu lateral do painel */
-    --escuro: #1e1e1e; /* preto do capacete */
+    --escuro: #000000; /* preto do capacete */
     --sobre-escuro: #f6f6f6; /* texto em cima do escuro (branco do "RANCING") */
     --sobre-escuro-suave: #c4c4c4; /* prata */
     --borda-escura: #3a3a3a;
