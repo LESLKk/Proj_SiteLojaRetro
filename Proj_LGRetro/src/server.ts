@@ -44,6 +44,28 @@ function validar(produto: Produto): string {
 
 // ----- Rotas de leitura -----
 
+//READ - listar todos os produtos
+
+app.get("/api/produtos", async (req, res) => {
+    const resultado = await produtos.orderBy("criadoEm", "desc").get();
+    const lista = resultado.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+    res.json(lista);
+});
+
+//READ: ID - buscar um produto pelo ID
+
+app.get("/api/produtos/:id", async (req, res) => {
+    const id = String(req.params.id);
+    const doc = await produtos.doc(id).get();
+
+    if (!doc.exists) {
+        res.status(404).json({ erro: "Produto não encontrado." });
+        return;
+    }
+    res.json({ id: doc.id, ...doc.data() });
+});
+
 // ----- Rotas de escrita -----
 
 //CREATE - cadastrar um novo produto
@@ -68,6 +90,69 @@ app.post("/api/produtos", async (req, res) => {
     const doc = await produtos.add({ ...produto, criadoEm: Date.now() });
     res.status(201).json({ id: doc.id, ...produto });
 });
+
+//UPDATE - atualizar um produto existente
+app.put("/api/produtos/:id", async (req, res) => {
+    const { nome, descricao, preco, quantidade, fotoUrl } = req.body ?? {};
+
+    const produto = {
+        nome,
+        descricao,
+        preco,
+        quantidade,
+        fotoUrl,
+    };
+
+    const erro = validar(produto);
+
+    if (erro) {
+        res.status(400).json({ erro: "Não foi possível atualizar o produto" });
+        return;
+    }
+
+    const id = String(req.params.id);
+    const referencia = produtos.doc(id);
+    const doc = await referencia.get();
+
+    if (!doc.exists) {
+        res.status(404).json({ erro: "Produto não encontrado." });
+        return;
+    }
+
+    referencia.update({ ...produto });
+    res.json({ id, ...produto });
+});
+
+
+// DELETE - remover um produto existente
+
+app.delete("/api/produtos/:id", async (req, res) => {
+    const id = String(req.params.id);
+    const referencia = produtos.doc(id);
+    const doc = await referencia.get();
+
+    if (!doc.exists) {
+        res.status(404).json({ erro: "Produto não encontrado." });
+        return;
+    }
+
+    await referencia.delete();
+    res.status(204).send();
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(PORT, (erro) => {
     if (erro) {
